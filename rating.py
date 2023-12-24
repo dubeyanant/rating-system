@@ -1,3 +1,5 @@
+from colorama import Fore, Style  # Import colorama
+
 def get_rating(parameter_name, rating_scale):
     while True:
         try:
@@ -5,13 +7,13 @@ def get_rating(parameter_name, rating_scale):
             for i, description in enumerate(rating_scale, start=0):
                 print(f"{i}: {description}")
 
-            rating = int(input("Enter your rating (0-5): "))
+            rating = int(input(Fore.BLUE + "Enter your rating (0-5): " + Style.RESET_ALL))
             if 0 <= rating <= 5:
                 return rating
             else:
-                print("Invalid input. Please enter a number between 0 and 5.")
+                print(Fore.RED + "Invalid input. Please enter a number between 0 and 5." + Style.RESET_ALL)
         except ValueError:
-            print("Invalid input. Please enter a number between 0 and 5.")
+            print(Fore.RED + "Invalid input. Please enter a number between 0 and 5." + Style.RESET_ALL)
 
 def calculate_average(ratings):
     non_zero_ratings = [rating for rating in ratings if rating != 0]
@@ -52,4 +54,4 @@ average_rating = calculate_average(ratings)
 
 # Interpret and display the result
 interpretation = interpret_rating(average_rating)
-print(f"\nAverage Rating: {average_rating:.1f} - {interpretation}")
+print(Fore.GREEN + f"\nAverage Rating: {average_rating:.1f} - {interpretation}"  + Style.RESET_ALL)
